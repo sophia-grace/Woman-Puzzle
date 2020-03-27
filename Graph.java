@@ -7,6 +7,10 @@ edges that are adjacent to the key/vertex)
 */
 
 import java.util.*;
+import java.net.*;
+import java.io.*;
+import static java.nio.file.StandardOpenOption.*;
+import java.nio.file.*;
 
 public class Graph<V> {
   private Map<V, List<V>> verticesAndEdges;
@@ -25,10 +29,10 @@ public class Graph<V> {
     // first make sure that start and end are already
     // edges that are present in the Graph
     // If not, then add them
-    if(!verticesAndEdges.containsKey(start)) {
+    if(!hasVertex(start)) {
       insertVertex(start);
     }
-    if(!verticesAndEdges.containsKey(end)) {
+    if(!hasVertex(end)) {
       insertVertex(end);
     }
 
@@ -41,17 +45,17 @@ public class Graph<V> {
     return verticesAndEdges.containsKey(vertex);
   }
 
-  public boolean hasEdge(V start, V end) {
-    if(!hasVertex(start)) {
-      return false;
-    }
-    if(!hasVertex(end)) {
-      return false;
-    }
-    else {
-      return verticesAndEdges.get(start).contains(end);
-    }
-  }
+  // public boolean hasEdge(V start, V end) {
+  //   if(!hasVertex(start)) {
+  //     return false;
+  //   }
+  //   if(!hasVertex(end)) {
+  //     return false;
+  //   }
+  //   else {
+  //     return verticesAndEdges.get(start).contains(end);
+  //   }
+  // }
 
   public List<V> getEdges(V vertex) {
     // return all the edges (adjacent vertices) associated with vertex
@@ -64,16 +68,17 @@ public class Graph<V> {
     }
   }
 
-  public V getMostNeighbors() {
-    V mostNeighbors = null;
+  public List<V> getMostNeighbors() {
+    List<V> mostNeighbors = new LinkedList<V>();
     int currentNumNeighbors = 0;
     int maxNumNeighbors = 0;
     for(V vertex : verticesAndEdges.keySet()) {
       currentNumNeighbors = verticesAndEdges.get(vertex).size();
-      if(currentNumNeighbors > maxNumNeighbors) {
+      if(currentNumNeighbors >= maxNumNeighbors) {
         maxNumNeighbors = currentNumNeighbors;
-        mostNeighbors = vertex;
+        mostNeighbors.add(vertex);
       }
+    //  System.out.println(vertex);
     }
     return mostNeighbors;
   }
