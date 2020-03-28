@@ -1,8 +1,5 @@
-/*
-Name: Sophia Trump
-File: Task1.java
-Description:
-*/
+
+
 
 import java.net.*;
 import java.io.*;
@@ -10,7 +7,7 @@ import java.util.*;
 import static java.nio.file.StandardOpenOption.*;
 import java.nio.file.*;
 
-public class Task1 {
+public class Task2 {
 
   public static void populateGraph(Graph<String> graph) {
     try {
@@ -47,17 +44,10 @@ public class Task1 {
     }
   }
 
-  public static String getInput(String prompt) {
-		System.out.print(prompt);
-		String input = null;
-		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-			input = br.readLine();
-		} catch (IOException io) {
-			io.printStackTrace();
-		}
-		return input;
-	}
+  public static 
+
+
+
 
   public static void main(String[] args) {
     // create the Graph
@@ -66,29 +56,11 @@ public class Task1 {
     // populate the graph with the States dataset
     populateGraph(states);
 
-    //  print the State with the most neighbors
-    String stateWithMostNeighbors = states.getMostNeighbors();
-    int numEdges = states.getEdges(stateWithMostNeighbors).size();
-    System.out.println("The state with the most neighbors is " + stateWithMostNeighbors + ". This state has " + numEdges + " neighbors.");
-
     // start querying
     while(true) {
       String prompt = "Enter a state: ";
 			String input = getInput(prompt);
 
-      List<String> neighbors = states.getEdges(input);
 
-      if(neighbors.size() == 0) {
-        System.out.println(input + " has no neighbors.");
-      }
-      else {
-        System.out.print(input + " has the following neighbors: ");
-        for(String neighbor : neighbors) {
-          System.out.print(neighbor + ", ");
-        }
-        System.out.print("\n");
-      }
-      System.out.print("\n");
-    }
   }
 }
