@@ -27,18 +27,17 @@ public class Task1 {
 
           // add the state (vertex) to the Graph
           graph.insertVertex(pieces[0]);
-        //  System.out.println(graph.hasVertex(pieces[0]));
 
-        //  System.out.println(pieces[0] + ":" + pieces[1]);
-
-
-          // add all the edges for that state
-          String borderStates[] = pieces[1].split(", ");
-          for(int i = 0; i < borderStates.length; i++) {
-            // remove quotes from each of the pieces
-            borderStates[i] = borderStates[i].replaceAll("\"", "");
-      //      System.out.println("Inserting " + pieces[0] + borderStates[i]);
-            graph.insertEdge(pieces[0], borderStates[i]);
+          // as long as the state has neighbors, than add its edges to the
+          // graph
+          if(!pieces[1].equals("")) {
+            // add all the edges for that state
+            String borderStates[] = pieces[1].split(", ");
+            for(int i = 0; i < borderStates.length; i++) {
+              // remove quotes from each of the pieces
+              borderStates[i] = borderStates[i].replaceAll("\"", "");
+              graph.insertEdge(pieces[0], borderStates[i]);
+            }
           }
       }
       in.close();
@@ -48,7 +47,17 @@ public class Task1 {
     }
   }
 
-
+  public static String getInput(String prompt) {
+		System.out.print(prompt);
+		String input = null;
+		try {
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			input = br.readLine();
+		} catch (IOException io) {
+			io.printStackTrace();
+		}
+		return input;
+	}
 
   public static void main(String[] args) {
     // create the Graph
@@ -57,11 +66,29 @@ public class Task1 {
     // populate the graph with the States dataset
     populateGraph(states);
 
-  //  print the State with the most neighbors
-    List<String> statesWithMostNeighbors = states.getMostNeighbors();
-    for(String state : statesWithMostNeighbors) {
-      System.out.println(state + ": " + states.getEdges(state).size());
+    //  print the State with the most neighbors
+    String stateWithMostNeighbors = states.getMostNeighbors();
+    int numEdges = states.getEdges(stateWithMostNeighbors).size();
+    System.out.println("The state with the most neighbors is " + stateWithMostNeighbors + ". This state has " + numEdges + " neighbors.");
+
+    // start querying
+    while(true) {
+      String prompt = "Enter a state: ";
+			String input = getInput(prompt);
+
+      List<String> neighbors = states.getEdges(input);
+
+      if(neighbors.size() == 0) {
+        System.out.println(input + " has no neighbors.");
+      }
+      else {
+        System.out.print(input + " has the following neighbors: ");
+        System.out.print(neighbors.remove(0));
+        for(String neighbor : neighbors) {
+          System.out.print(", " + neighbor);
+        }
+      }
+      System.out.print("\n");
     }
-  // states.getMostNeighbors();
   }
 }

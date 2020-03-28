@@ -45,18 +45,6 @@ public class Graph<V> {
     return verticesAndEdges.containsKey(vertex);
   }
 
-  // public boolean hasEdge(V start, V end) {
-  //   if(!hasVertex(start)) {
-  //     return false;
-  //   }
-  //   if(!hasVertex(end)) {
-  //     return false;
-  //   }
-  //   else {
-  //     return verticesAndEdges.get(start).contains(end);
-  //   }
-  // }
-
   public List<V> getEdges(V vertex) {
     // return all the edges (adjacent vertices) associated with vertex
     if(hasVertex(vertex)) {
@@ -68,17 +56,16 @@ public class Graph<V> {
     }
   }
 
-  public List<V> getMostNeighbors() {
-    List<V> mostNeighbors = new LinkedList<V>();
+  public V getMostNeighbors() {
+    V mostNeighbors = null;
     int currentNumNeighbors = 0;
     int maxNumNeighbors = 0;
     for(V vertex : verticesAndEdges.keySet()) {
       currentNumNeighbors = verticesAndEdges.get(vertex).size();
-      if(currentNumNeighbors >= maxNumNeighbors) {
+      if(currentNumNeighbors > maxNumNeighbors) {
         maxNumNeighbors = currentNumNeighbors;
-        mostNeighbors.add(vertex);
+        mostNeighbors = vertex;
       }
-    //  System.out.println(vertex);
     }
     return mostNeighbors;
   }
