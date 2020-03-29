@@ -3,7 +3,8 @@ Name: Sophia Trump
 File: Graph.java
 Description: A Graph abstract datatype, implemented using a HashMap,
 where the keys are the vertices and the values are the edges (i.e., a list of
-edges that are adjacent to the key/vertex)
+edges that are adjacent to the key/vertex). Populates the Graph and allows
+users to query states.
 */
 
 import java.util.*;
@@ -13,6 +14,7 @@ import static java.nio.file.StandardOpenOption.*;
 import java.nio.file.*;
 
 public class Graph {
+  // attributes
   private Map<String, ArrayList<String>> adjList;
   int N;
 
@@ -31,6 +33,7 @@ public class Graph {
       // read each line in the dataset
       while ((inputLine = in.readLine()) != null) {
           // split the line into its pieces
+          // separate the state from its neighbors
           String pieces[] = inputLine.split(",", 2);
 
           // add the state (vertex) to the Graph
@@ -42,11 +45,12 @@ public class Graph {
           // as long as the state has neighbors, than add its edges to the
           // graph
           if(!pieces[1].equals("")) {
-            // add all the edges for that state
+            // separate the border states
             String borderStates[] = pieces[1].split(", ");
             for(int i = 0; i < borderStates.length; i++) {
               // remove quotes from each of the pieces
               borderStates[i] = borderStates[i].replaceAll("\"", "");
+              // add the edges for that state
               insertEdge(pieces[0], borderStates[i]);
             }
           }
@@ -56,12 +60,12 @@ public class Graph {
     } catch(Exception IOException) {
       System.out.println("Unable to access the data.");
     }
-  }
+  } // Graph()
 
   public void insertVertex(String vertex) {
     // add the vertex to the Graph, with no edges yet
     adjList.put(vertex, new ArrayList<String>());
-  }
+  } // insertVertex()
 
   public void insertEdge(String start, String end) {
     // first make sure that start and end are already
@@ -77,11 +81,11 @@ public class Graph {
     // both vertices are in the Graph, so now add the edge between
     // start and end (add end as an adjacent vertex to start's list)
     adjList.get(start).add(end);
-  }
+  } // insertEdge()
 
   public boolean hasVertex(String vertex) {
     return adjList.containsKey(vertex);
-  }
+  } // hasVertex()
 
   public ArrayList<String> neighbors(String vertex) {
     // return all the edges (adjacent vertices) associated with vertex
@@ -92,13 +96,18 @@ public class Graph {
       // if the vertex isn't in the graph, just return an empty list
       return new ArrayList<String>();
     }
-  }
+  } // neighbors()
 
   public String getMostNeighbors() {
+    // returns the state with the most neighbors
+    // if multiple states have the max number of neighbors,
+    // it returns the first state
     String mostNeighbors = null;
     int currentNumNeighbors = 0;
     int maxNumNeighbors = 0;
+
     for(String vertex : adjList.keySet()) {
+      // count the number of neighbors for the current vertex
       currentNumNeighbors = adjList.get(vertex).size();
       if(currentNumNeighbors > maxNumNeighbors) {
         maxNumNeighbors = currentNumNeighbors;
@@ -106,7 +115,7 @@ public class Graph {
       }
     }
     return mostNeighbors;
-  }
+  } // getMostNeighbors
 
   public static String getInput(String prompt) {
     System.out.print(prompt);
@@ -118,7 +127,7 @@ public class Graph {
       io.printStackTrace();
     }
     return input;
-  }
+  } // getInput()
 
   public static void main(String[] args) {
     try {
@@ -139,9 +148,11 @@ public class Graph {
 
         List<String> nbrs = USStates.neighbors(state);
 
+        // if there are no neighbors
         if(nbrs.size() == 0) {
           System.out.println(state + " has no neighbors.");
         }
+        // if there are neighbors
         else {
           System.out.print(state + " has the following neighbors: ");
           for(String neighbor : nbrs) {
@@ -155,5 +166,5 @@ public class Graph {
     catch(Exception IOException) {
       System.out.println("Unable to access the data.");
     }
-  }
-}
+  } // main()
+} // Graph
