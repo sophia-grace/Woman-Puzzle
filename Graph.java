@@ -98,6 +98,21 @@ public class Graph {
     }
   } // neighbors()
 
+  public ArrayList<String> vertices() {
+    // returns a list of of all the vertices in the graph
+    Set<String> allVertices = adjList.keySet();
+
+    // now add all the vertices to an ArrayList
+    ArrayList<String> listOfAllVertices = new ArrayList<String>();
+
+    for(String vertex : allVertices) {
+      listOfAllVertices.add(vertex);
+    }
+
+    return listOfAllVertices;
+
+  } // vertices()
+
   public String getMostNeighbors() {
     // returns the state with the most neighbors
     // if multiple states have the max number of neighbors,
