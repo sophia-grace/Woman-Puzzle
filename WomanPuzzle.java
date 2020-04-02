@@ -43,9 +43,9 @@ public class WomanPuzzle {
         visited.put(u, true);
 
         // find all neighbors for u
-        ArrayList<String> neighbors = g.neighbors(u);
+        ArrayList<String> womanOnlyNeighbors = womanOnly(g.neighbors(u), t);
 
-        for(String v: neighbors) {
+        for(String v: womanOnlyNeighbors) {
           if(visited.get(v).equals(false) && (frontier.search(v) == -1)) {
             pred.put(v, u);
             // insert v into the frontier
@@ -56,7 +56,6 @@ public class WomanPuzzle {
     }
 
     // Return failure
-    System.out.println("failed");
     return null;
   } // dfs()
 
@@ -76,6 +75,25 @@ public class WomanPuzzle {
     return P;
   } // path()
 
+  public static ArrayList<String> womanOnly(ArrayList<String> vertices, String t) {
+    // returns a list of only those vertices whose first letter is either in the word WOMAN or is the destination (t)
+    // returns a list of of all the vertices in the graph
+
+    ArrayList<String> womanOnlyVertices = new ArrayList<String>();
+    String woman = "WOMAN";
+
+    for(String vertex : vertices) {
+      if(woman.indexOf(vertex.charAt(0)) != -1) {
+        womanOnlyVertices.add(vertex);
+      }
+      if(vertex.equals(t)) {
+        womanOnlyVertices.add(vertex);
+      }
+    }
+
+    return womanOnlyVertices;
+  } // womanOnly()
+
   public static void main(String[] args) {
     try {
       URL url = new URL("https://cs.brynmawr.edu/Courses/cs330/spring2020/USStates.csv");
@@ -88,9 +106,17 @@ public class WomanPuzzle {
 
       ArrayList<String> path = dfs(G, start, destination);
 
-      for(String p: path) {
-        System.out.println(p);
+      if(path != null) {
+        System.out.println("Yes. To get from " + start + " to " + destination + " march as follows:");
+        for(String p: path) {
+          System.out.print(p + ", ");
+        }
+        System.out.println();
       }
+      else {
+        System.out.println("No. There is no way to get from " + start + " to " + destination + ".");
+      }
+
     }
     catch(Exception IOException) {
       System.out.println("Unable to access the data.");
