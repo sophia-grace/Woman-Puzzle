@@ -1,0 +1,66 @@
+Script started on Sat Apr  4 18:03:16 2020
+[?1034hbash-3.2$ javac Graph.java
+bash-3.2$ java Graph
+The state with the most neighbors is Tennessee. This state has 8 neighbors.
+Enter a state: Florida
+Florida has the following neighbors: Alabama, Georgia, 
+
+Enter a state: Idaho
+Idaho has the following neighbors: Montana, Nevada, Oregon, Utah, Washington, Wyoming, 
+
+Enter a state: Hawaii
+Hawaii has no neighbors.
+
+Enter a state: ^Cbash-3.2$ exit
+exit
+
+Script done on Sat Apr  4 18:03:45 2020
+aph.txt
+[?1034hbash-3.2$ javac Graph.txt
+error: Class names, 'Graph.txt', are only accepted if annotation processing is explicitly requested
+1 error
+bash-3.2$ j[Kexit
+exit
+
+Script done, output file is Graph.txt
+bash-3.2$ script Graph.txt
+Script started, output file is Graph.txt
+[?1034hbash-3.2$ javac Graph.java
+bash-3.2$ java Graph
+The state with the most neighbors is Tennessee. This state has 8 neighbors.
+Enter a state: Florida
+Florida has the following neighbors: Alabama, Georgia, 
+
+Enter a state: Idaho
+Idaho has the following neighbors: Montana, Nevada, Oregon, Utah, Washington, Wyoming, 
+
+Enter a state: Hawaii
+Hawaii has no neighbors.
+
+Enter a state: ^Cbash-3.2$ exit
+exit
+
+Script done, output file is Graph.txt
+bash-3.2$ script WomanPuzzle
+Script started, output file is WomanPuzzle
+[?1034hbash-3.2$ javac WomanPuzzle.java
+bash-3.2$ java WomanPuzzle
+Using DFS...
+Yes. To get from Washington to District of Columbia march as follows:
+Washington, Oregon, Nevada, Arizona, New Mexico, Oklahoma, Missouri, Nebraska, Wyoming, Montana, North Dakota, Minnesota, Wisconsin, Michigan, Ohio, West Virginia, Maryland, District of Columbia, 
+
+
+Using BFS...
+Yes. To get from Washington to District of Columbia march as follows:
+Washington, Oregon, Nevada, Arizona, New Mexico, Oklahoma, Missouri, Nebraska, Wyoming, Montana, North Dakota, Minnesota, Wisconsin, Michigan, Ohio, West Virginia, Maryland, District of Columbia, 
+bash-3.2$ ei[Kxit
+exit
+
+Script done, output file is WomanPuzzle
+bash-3.2$ sr[Kcrip[K[K[K[K[K
+bash-3.2$ script WomanPuzzle
+Script started, output file is WomanPuzzle
+[?1034hbash-3.2$ javac WomanPuzzle
+error: Class names, 'WomanPuzzle', are only accepted if annotation processing is explicitly requested
+1 error
+bash-3.2$ 

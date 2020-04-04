@@ -1,0 +1,15 @@
+Script started on Sat Apr  4 18:04:28 2020
+[?1034hbash-3.2$ javac WomanPuzzle.java
+bash-3.2$ java WomanPuzzle
+Using DFS...
+Yes. To get from Washington to District of Columbia march as follows:
+Washington, Oregon, Nevada, Arizona, New Mexico, Oklahoma, Missouri, Nebraska, Wyoming, Montana, North Dakota, Minnesota, Wisconsin, Michigan, Ohio, West Virginia, Maryland, District of Columbia, 
+
+
+Using BFS...
+Yes. To get from Washington to District of Columbia march as follows:
+Washington, Oregon, Nevada, Arizona, New Mexico, Oklahoma, Missouri, Nebraska, Wyoming, Montana, North Dakota, Minnesota, Wisconsin, Michigan, Ohio, West Virginia, Maryland, District of Columbia, 
+bash-3.2$ exit
+exit
+
+Script done on Sat Apr  4 18:04:38 2020
